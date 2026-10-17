@@ -1,23 +1,24 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="color-scheme" content="dark">
-  <meta name="description" content="Churn Intelligence Lab is an end-to-end machine learning and MLOps portfolio project for banking customer churn prediction and experimental telecom churn analysis.">
-  <meta property="og:title" content="Churn Intelligence Lab | AI & MLOps Portfolio">
-  <meta property="og:description" content="Explore a deployed machine-learning application, model evaluation, and reproducible ML engineering workflows.">
-  <meta property="og:type" content="website">
-  <meta name="portfolio:title" content="Churn Intelligence Lab">
-<meta name="portfolio:description" content="Bank customer churn prediction, model evaluation, FastAPI and Gradio integration. Experimental telecom model clearly labeled.">
-<meta name="portfolio:category" content="Machine Learning">
-<meta name="portfolio:status" content="Source published · Live demo awaiting public access">
-<meta name="portfolio:tags" content="XGBoost, FastAPI, Gradio, Docker">
-<meta name="portfolio:repo" content="https://github.com/Raymuz/churn-intelligence-lab">
-<meta name="portfolio:live" content="">
-<meta name="portfolio:embed" content="">
-  <title>Churn Intelligence Lab | Machine Learning Portfolio</title>
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="dark" name="color-scheme"/>
+<meta content="Churn Intelligence Lab is an end-to-end machine learning and MLOps portfolio project for banking customer churn prediction and experimental telecom churn analysis." name="description"/>
+<meta content="Churn Intelligence Lab | AI &amp; MLOps Portfolio" property="og:title"/>
+<meta content="Explore a deployed machine-learning application, model evaluation, and reproducible ML engineering workflows." property="og:description"/>
+<meta content="website" property="og:type"/>
+<meta content="Churn Intelligence Lab" name="portfolio:title"/>
+<meta content="Bank customer churn prediction, model evaluation, FastAPI and Gradio integration. Experimental telecom model clearly labeled." name="portfolio:description"/>
+<meta content="Machine Learning" name="portfolio:category"/>
+<meta content="Source published · Live demo awaiting public access" name="portfolio:status"/>
+<meta content="XGBoost, FastAPI, Gradio, Docker" name="portfolio:tags"/>
+<meta content="https://github.com/Raymuz/churn-intelligence-lab" name="portfolio:repo"/>
+<meta content="" name="portfolio:live"/>
+<meta content="" name="portfolio:embed"/>
+<title>Churn Intelligence Lab | Machine Learning Portfolio</title>
+<style>
     :root{--bg:#090f1d;--panel:#101a2c;--panel2:#131f33;--text:#e9f0fb;--muted:#9db0c9;--line:#253852;--cyan:#59d9e9;--mint:#87e6bd;--accent:#9ac3ff;--max:1140px}
     *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.65 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
     a{color:inherit;text-decoration:none}a:focus-visible,button:focus-visible{outline:3px solid var(--cyan);outline-offset:4px}button{font:inherit}
@@ -33,32 +34,48 @@
     .embed{min-height:260px;border:1px dashed #43637c;border-radius:15px;background:#0c1727;display:flex;align-items:center;justify-content:center;text-align:center;padding:30px;color:var(--muted)}.embed-inner{max-width:460px}.embed-inner h3{color:var(--text);margin:7px 0}.embed code,.setup code{background:#1d2d41;color:#addef2;padding:3px 6px;border-radius:5px;overflow-wrap:anywhere}.embed iframe{width:100%;min-height:700px;border:0;border-radius:14px;background:#fff}.embed.is-live{display:block;padding:0;border:0;background:none;min-height:0}.foot{padding:28px 0;border-top:1px solid #2a3c52;color:#93abc5;font-size:13px}.foot .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}.setup{border-left:3px solid var(--cyan);padding:15px 19px;background:#13243b;margin-top:20px;border-radius:0 10px 10px 0;font-size:14px;color:#b8cce4}
     @media(max-width:850px){.herogrid{grid-template-columns:1fr;gap:45px}.hero{padding:72px 0}.menu{gap:12px}.flow{grid-template-columns:repeat(2,1fr)}}@media(max-width:570px){.wrap{padding:0 18px}.menu{display:none}.hero{padding:56px 0}.grid2{grid-template-columns:1fr}.flow{grid-template-columns:1fr 1fr}.preview{padding:18px}section{padding:60px 0}.btn{width:100%}.actions{display:grid}.brand{font-size:12px}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
   </style>
-</head>
+<style>
+/* V8.3: In-page public model demo, restrained to approved design */
+.churn-workspace{margin:20px auto 24px;border:1px solid #d9e6f6;background:linear-gradient(140deg,#f9fcff,#eef7ff);border-radius:20px;box-shadow:0 12px 30px rgba(4,35,78,.08);overflow:hidden;color:#13294a}
+.churn-workspace .churn-heading{padding:20px 24px 15px;display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.churn-workspace h3{margin:0 0 6px;font-size:1.23rem;color:#09244b}
+.churn-workspace p{margin:0;line-height:1.6;color:#50617c;font-size:.94rem}
+.churn-workspace .churn-state{display:flex;align-items:center;gap:7px;font-weight:750;font-size:.79rem;padding:8px 12px;border-radius:100px;background:#e2eaf8;color:#1c4779}
+.churn-workspace .churn-panel{margin:0 20px 20px;border:1px solid #dae4f0;background:#fff;border-radius:14px;overflow:hidden}
+.churn-workspace .churn-message{padding:25px 24px;min-height:112px}
+.churn-workspace .churn-message p{margin-top:8px}
+.churn-workspace .churn-actions{display:flex;gap:10px;flex-wrap:wrap;padding:0 24px 22px}
+.churn-workspace .churn-actions a,.churn-workspace .churn-actions button{border:1px solid #bad0e8;border-radius:10px;background:#fff;color:#0b3d76;padding:10px 15px;font:inherit;font-weight:750;text-decoration:none;cursor:pointer}
+.churn-workspace .churn-actions button{color:#fff;background:#075ace;border-color:#075ace}
+.churn-workspace iframe{width:100%;height:770px;display:block;border:0;background:#fff}
+.churn-workspace .churn-caption{padding:0 24px 20px;font-size:.8rem;color:#586b86}
+@media(max-width:700px){.churn-workspace{margin:14px 0}.churn-workspace .churn-heading{padding:17px}.churn-workspace .churn-panel{margin:0 10px 14px}.churn-workspace iframe{height:830px}.churn-workspace .churn-actions{padding:0 14px 18px}}
+</style></head>
 <body>
 <a href="../../" style="display:block;text-align:center;background:#12344b;color:#d2f4f6;font:700 13px system-ui;padding:10px;text-decoration:none;border-bottom:1px solid #2d6472">← Back to Dr. Adamou Musa Portfolio</a>
-  <header class="nav"><div class="wrap nav-inner"><a class="brand" href="#home" aria-label="Churn Intelligence Lab home"><span class="logo" aria-hidden="true">◈</span> CHURN INTELLIGENCE LAB</a><nav class="menu" aria-label="Main navigation"><a href="#models">Models</a><a href="#workflow">Architecture</a><a href="#demo">Live demo</a><a href="#about">About</a></nav></div></header>
-  <main>
-    <div class="hero" id="home"><div class="wrap herogrid">
-      <div><span class="eyebrow"><span class="dot"></span> End-to-end AI &amp; MLOps case study</span><h1>Understand churn.<br><span>Explore predictive AI.</span></h1><p class="lead">A machine-learning portfolio application that demonstrates banking customer churn prediction, transparent model evaluation, interactive inference, and containerized deployment.</p><div class="actions"><a class="btn btn-primary" href="#demo">Explore the application <span aria-hidden="true">↗</span></a><a class="btn btn-secondary" id="repo-hero" href="https://github.com/Raymuz/churn-intelligence-lab">View project source <span aria-hidden="true">→</span></a></div><div class="minirow"><span class="chip">XGBoost</span><span class="chip">FastAPI</span><span class="chip">Gradio</span><span class="chip">Docker</span><span class="chip">Hugging Face</span></div></div>
-      <div class="preview" aria-label="Illustrative model evaluation preview"><div class="preview-head"><strong>Bank churn · model evaluation</strong><span class="demo-tag">Validation result</span></div><div class="preview-score"><div><div class="label">ROC AUC</div><div class="score">0.858</div></div><span class="smallnote">Local validation</span></div><div class="bar" aria-hidden="true"><span style="width:85.8%"></span></div><div class="preview-stats"><div class="preview-stat"><span class="label">Workflow</span><b>End-to-end</b></div><div class="preview-stat"><span class="label">Interfaces</span><b>UI + API</b></div></div><div class="preview-note">Illustrative visual only. This panel is not a live model prediction.</div></div>
-    </div></div>
-    <section id="models"><div class="wrap"><span class="eyebrow">Research &amp; results</span><h2>Two datasets. Evidence-led evaluation.</h2><p class="section-intro">Built to show both the capabilities and limitations of supervised machine learning in customer retention analytics. The metrics below are from local validation, not a production performance guarantee.</p>
-      <div class="grid2"><article class="card"><span class="pill">Promising validation</span><h3>Banking Customer Churn</h3><p>Estimates customer churn risk using banking attributes such as account tenure, activity, balance, age, and credit-related information.</p><div class="metric"><strong>0.858</strong><small>ROC AUC</small></div><div class="bar"><span style="width:85.8%"></span></div><p class="smallnote" style="margin-top:13px">For educational demonstration. Deployment still requires appropriate monitoring and independent validation.</p></article>
-      <article class="card"><span class="pill warn">Research only</span><h3>Telecommunications Churn</h3><p>Experimental analysis using telecommunications customer characteristics. Current testing did not demonstrate reliable predictive separation.</p><div class="metric"><strong>0.492</strong><small>ROC AUC</small></div><div class="bar"><span style="width:49.2%"></span></div><p class="smallnote" style="margin-top:13px">Near-chance performance. Do not use these predictions for real customer retention decisions.</p></article></div>
-    </div></section>
-    <section id="workflow"><div class="wrap"><span class="eyebrow">Engineering workflow</span><h2>From raw data to a deployable application.</h2><p class="section-intro">This reproducible portfolio project includes data preparation, algorithm comparison, evaluation, model serialization, API tests, and an interactive interface.</p>
-      <div class="flow"><div class="step"><span class="n">01</span><b>Data</b><small>Validation &amp; preparation</small></div><div class="step"><span class="n">02</span><b>Training</b><small>Pipeline &amp; tuning</small></div><div class="step"><span class="n">03</span><b>Evaluation</b><small>ROC AUC &amp; testing</small></div><div class="step"><span class="n">04</span><b>Serving</b><small>Gradio &amp; FastAPI</small></div><div class="step"><span class="n">05</span><b>Deployment</b><small>Docker &amp; Spaces</small></div></div>
-      <div class="stack" aria-label="Project technology stack"><span>Python</span><span>Pandas</span><span>Scikit-learn</span><span>XGBoost</span><span>Gradio</span><span>FastAPI</span><span>Docker</span><span>GitHub</span><span>Hugging Face</span></div>
-    </div></section>
-    <section id="demo"><div class="wrap"><span class="eyebrow">Interactive project</span><h2>Explore the live demo.</h2><p class="section-intro">Once the Hugging Face Space is deployed, the interactive application can appear right here on your portfolio website.</p>
-      <div class="embed" id="demo-container"><div class="embed-inner" id="demo-placeholder"><div style="font-size:38px" aria-hidden="true">◈</div><h3>Interactive application — access pending</h3><p>The machine-learning application is hosted on Hugging Face, but its Space is currently <strong>private</strong>. Public visitors cannot use the embedded interface yet.</p><p>Once the Space is public, running, and passes the portfolio's automatic health check, its live Gradio interface will appear here after the next successful discovery run.</p><p class="smallnote">No access tokens or private customer records are required on this website.</p></div></div><div class="actions"><a class="btn btn-primary" id="space-button" href="https://huggingface.co/spaces/raymuz/Customer_Churn_Intelligence_Lab">View Hugging Face Space <span aria-hidden="true">↗</span></a><a class="btn btn-secondary" id="repo-button" href="#about">Explore source on GitHub <span aria-hidden="true">→</span></a></div><p id="link-status" class="smallnote" role="status">The Hugging Face Space is currently private; only authorized users can open it. The GitHub source repository is accessible independently.</p>
-    </div></section>
-    <section id="about"><div class="wrap"><span class="eyebrow">About this project</span><h2>Applied machine learning, built with transparency.</h2><p class="section-intro">Churn Intelligence Lab is an educational and portfolio demonstration of predictive analytics and end-to-end MLOps engineering. It is not a production-validated customer decision platform. Model performance varies by dataset, and predictive scores alone should not drive customer actions.</p>
-      <div class="setup"><strong>For reviewers and collaborators:</strong> Explore the live model interface when available, inspect the training and evaluation workflow, and review the code and documentation on GitHub. The source customer datasets and private account credentials are not published on this website.</div>
-    </div></section>
-  </main>
-  <footer class="foot"><div class="wrap"><span>© <span id="year">2026</span> Churn Intelligence Lab · Machine Learning Portfolio</span><a class="plainlink" href="#home">Back to top ↑</a></div></footer>
-  <script>
+<header class="nav"><div class="wrap nav-inner"><a aria-label="Churn Intelligence Lab home" class="brand" href="#home"><span aria-hidden="true" class="logo">◈</span> CHURN INTELLIGENCE LAB</a><nav aria-label="Main navigation" class="menu"><a href="#models">Models</a><a href="#workflow">Architecture</a><a href="#demo">Live demo</a><a href="#about">About</a></nav></div></header>
+<main>
+<div class="hero" id="home"><div class="wrap herogrid">
+<div><span class="eyebrow"><span class="dot"></span> End-to-end AI &amp; MLOps case study</span><h1>Understand churn.<br/><span>Explore predictive AI.</span></h1><p class="lead">A machine-learning portfolio application that demonstrates banking customer churn prediction, transparent model evaluation, interactive inference, and containerized deployment.</p><div class="actions"><a class="btn btn-primary" href="#demo">Explore the application <span aria-hidden="true">↗</span></a><a class="btn btn-secondary" href="https://github.com/Raymuz/churn-intelligence-lab" id="repo-hero">View project source <span aria-hidden="true">→</span></a></div><div class="minirow"><span class="chip">XGBoost</span><span class="chip">FastAPI</span><span class="chip">Gradio</span><span class="chip">Docker</span><span class="chip">Hugging Face</span></div></div>
+<div aria-label="Illustrative model evaluation preview" class="preview"><div class="preview-head"><strong>Bank churn · model evaluation</strong><span class="demo-tag">Validation result</span></div><div class="preview-score"><div><div class="label">ROC AUC</div><div class="score">0.858</div></div><span class="smallnote">Local validation</span></div><div aria-hidden="true" class="bar"><span style="width:85.8%"></span></div><div class="preview-stats"><div class="preview-stat"><span class="label">Workflow</span><b>End-to-end</b></div><div class="preview-stat"><span class="label">Interfaces</span><b>UI + API</b></div></div><div class="preview-note">Illustrative visual only. This panel is not a live model prediction.</div></div>
+</div></div>
+<section id="models"><div class="wrap"><span class="eyebrow">Research &amp; results</span><h2>Two datasets. Evidence-led evaluation.</h2><p class="section-intro">Built to show both the capabilities and limitations of supervised machine learning in customer retention analytics. The metrics below are from local validation, not a production performance guarantee.</p>
+<div class="grid2"><article class="card"><span class="pill">Promising validation</span><h3>Banking Customer Churn</h3><p>Estimates customer churn risk using banking attributes such as account tenure, activity, balance, age, and credit-related information.</p><div class="metric"><strong>0.858</strong><small>ROC AUC</small></div><div class="bar"><span style="width:85.8%"></span></div><p class="smallnote" style="margin-top:13px">For educational demonstration. Deployment still requires appropriate monitoring and independent validation.</p></article>
+<article class="card"><span class="pill warn">Research only</span><h3>Telecommunications Churn</h3><p>Experimental analysis using telecommunications customer characteristics. Current testing did not demonstrate reliable predictive separation.</p><div class="metric"><strong>0.492</strong><small>ROC AUC</small></div><div class="bar"><span style="width:49.2%"></span></div><p class="smallnote" style="margin-top:13px">Near-chance performance. Do not use these predictions for real customer retention decisions.</p></article></div>
+</div></section>
+<section id="workflow"><div class="wrap"><span class="eyebrow">Engineering workflow</span><h2>From raw data to a deployable application.</h2><p class="section-intro">This reproducible portfolio project includes data preparation, algorithm comparison, evaluation, model serialization, API tests, and an interactive interface.</p>
+<div class="flow"><div class="step"><span class="n">01</span><b>Data</b><small>Validation &amp; preparation</small></div><div class="step"><span class="n">02</span><b>Training</b><small>Pipeline &amp; tuning</small></div><div class="step"><span class="n">03</span><b>Evaluation</b><small>ROC AUC &amp; testing</small></div><div class="step"><span class="n">04</span><b>Serving</b><small>Gradio &amp; FastAPI</small></div><div class="step"><span class="n">05</span><b>Deployment</b><small>Docker &amp; Spaces</small></div></div>
+<div aria-label="Project technology stack" class="stack"><span>Python</span><span>Pandas</span><span>Scikit-learn</span><span>XGBoost</span><span>Gradio</span><span>FastAPI</span><span>Docker</span><span>GitHub</span><span>Hugging Face</span></div>
+</div></section>
+<section id="demo"><div class="wrap"><span class="eyebrow">Interactive project</span><h2>Explore the live demo.</h2><p class="section-intro">Use the embedded model on this page when its Hugging Face Space is publicly accessible and running. The banking model is the primary demonstration; the telecom model is research-only.</p>
+<div aria-label="Customer Churn interactive model" class="churn-workspace" data-churn-embed="1"><div class="churn-heading"><div><h3>Customer Churn Intelligence Lab — Interactive Model</h3><p>Use the bank churn predictor here on this website. The telecom predictor is experimental and research-only.</p></div><span aria-live="polite" class="churn-state" role="status">Checking availability</span></div><div class="churn-panel"><div aria-live="polite" class="churn-message" role="status"><strong>Checking the public Hugging Face application…</strong><p>A live model requires the Space to be public and running.</p></div></div><div class="churn-actions"><button class="churn-retry" type="button">Check / load model</button><a href="https://github.com/Raymuz/churn-intelligence-lab" rel="noopener noreferrer" target="_blank">Review source code ↗</a><a href="https://huggingface.co/spaces/raymuz/Customer_Churn_Intelligence_Lab" rel="noopener noreferrer" target="_blank">Hugging Face status ↗</a></div><p class="churn-caption">Powered by the Hugging Face-hosted application. This website does not store entered customer data; avoid entering real personal information into public demonstrations. A private or unavailable Space cannot be embedded for public visitors.</p></div><div class="actions"><a class="btn btn-primary" href="https://huggingface.co/spaces/raymuz/Customer_Churn_Intelligence_Lab" id="space-button">View Hugging Face Space <span aria-hidden="true">↗</span></a><a class="btn btn-secondary" href="https://github.com/Raymuz/churn-intelligence-lab" id="repo-button">Explore source on GitHub <span aria-hidden="true">→</span></a></div>
+</div></section>
+<section id="about"><div class="wrap"><span class="eyebrow">About this project</span><h2>Applied machine learning, built with transparency.</h2><p class="section-intro">Churn Intelligence Lab is an educational and portfolio demonstration of predictive analytics and end-to-end MLOps engineering. It is not a production-validated customer decision platform. Model performance varies by dataset, and predictive scores alone should not drive customer actions.</p>
+<div class="setup"><strong>For reviewers and collaborators:</strong> Explore the live model interface when available, inspect the training and evaluation workflow, and review the code and documentation on GitHub. The source customer datasets and private account credentials are not published on this website.</div>
+</div></section>
+</main>
+<footer class="foot"><div class="wrap"><span>© <span id="year">2026</span> Churn Intelligence Lab · Machine Learning Portfolio</span><a class="plainlink" href="#home">Back to top ↑</a></div></footer>
+<script>
     /* ===== CHANGE ONLY THESE THREE SETTINGS WHEN READY =====
        Use PUBLIC links only. Never add tokens or private information.
        Examples:
@@ -88,5 +105,64 @@
     }
     if(embed && space) document.getElementById('link-status').textContent='Interactive demonstration loaded from Hugging Face. If the iframe is unavailable, open the Space in a new tab.';
   </script>
+
+<script id="churn-embed-v83">
+(()=>{
+  const API='https://huggingface.co/api/spaces/raymuz/Customer_Churn_Intelligence_Lab';
+  const APP='https://raymuz-customer-churn-intelligence-lab.hf.space/ui/';
+  const containers=document.querySelectorAll('[data-churn-embed]');
+  if(!containers.length)return;
+  async function load(panel){
+    const badge=panel.querySelector('.churn-state');
+    const holder=panel.querySelector('.churn-panel');
+    badge.textContent='Checking availability';
+    holder.innerHTML='<div class="churn-message"><strong>Checking public model access…</strong><p>Please wait a moment.</p></div>';
+    try{
+      const controller=new AbortController();
+      const abort=setTimeout(()=>controller.abort(),10000);
+      let res;
+      try{res=await fetch(API,{signal:controller.signal,cache:'no-store'});}finally{clearTimeout(abort);}
+      if(res.status===401||res.status===403||res.status===404){
+        badge.textContent='Private / not public';
+        holder.innerHTML='<div class="churn-message"><strong>The hosted application is not publicly accessible.</strong><p>The Space owner must change its visibility to Public and confirm a successful runtime startup before visitors can use it here.</p></div>';
+        return;
+      }
+      if(!res.ok)throw new Error('Public Space status could not be retrieved');
+      const info=await res.json();
+      if(info.private===true){
+        badge.textContent='Private / not public';
+        holder.innerHTML='<div class="churn-message"><strong>Public access is not enabled yet.</strong><p>This embedded model becomes accessible when the Hugging Face Space is public and running.</p></div>';
+        return;
+      }
+      const stage=String((info.runtime||{}).stage||'').toUpperCase();
+      if(stage!=='RUNNING'){
+        badge.textContent=stage||'Not confirmed running';
+        holder.innerHTML='<div class="churn-message"><strong>The model is not ready to serve predictions.</strong><p>Current runtime state: '+(stage||'unknown')+'. When the Space starts successfully, use “Check / load model” again.</p></div>';
+        return;
+      }
+      badge.textContent='Public Space · RUNNING';
+      holder.replaceChildren();
+      const iframe=document.createElement('iframe');
+      iframe.src=APP;
+      iframe.title='Customer Churn Intelligence Lab interactive prediction interface';
+      iframe.loading='lazy';
+      iframe.referrerPolicy='strict-origin-when-cross-origin';
+      iframe.allow='clipboard-read; clipboard-write';
+      holder.appendChild(iframe);
+    }catch(e){
+      badge.textContent='Availability unconfirmed';
+      holder.innerHTML='<div class="churn-message"><strong>Unable to verify that the public model is ready.</strong><p>This may be a temporary network or host-access issue. Select “Check / load model” to retry, or open the Hugging Face status link.</p></div>';
+    }
+  }
+  for(const panel of containers){
+    panel.querySelector('.churn-retry').addEventListener('click',()=>load(panel));
+    const details=panel.closest('details');
+    if(details){
+      if(details.open)load(panel);
+      else details.addEventListener('toggle',()=>{if(details.open)load(panel);});
+    }else{load(panel);}
+  }
+})();
+</script>
 </body>
 </html>
