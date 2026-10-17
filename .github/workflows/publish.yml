@@ -1,0 +1,57 @@
+name: Build and deploy Dr. Adamou Musa portfolio
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  repository_dispatch:
+    types: [portfolio_project_deployed]
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out website source
+        uses: actions/checkout@v4
+      - name: Update external deployment metadata (on verified notification)
+        if: github.event_name == 'repository_dispatch'
+        env:
+          DEPLOYMENT_JSON: ${{ toJSON(github.event.client_payload) }}
+        run: python scripts/update_deployment.py
+      - name: Commit updated link metadata
+        if: github.event_name == 'repository_dispatch'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add projects
+          git diff --cached --quiet || git commit -m "Update deployed application links"
+          git push
+      - name: Prepare Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate project registry
+        run: python -m unittest discover -s tests -v
+      - name: Discover projects and generate website
+        run: python scripts/build_portfolio.py --out dist
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+      - name: Upload static GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: dist
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy the portfolio to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
