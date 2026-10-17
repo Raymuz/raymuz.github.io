@@ -3,6 +3,8 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  schedule:
+    - cron: "17 10 * * *"
   repository_dispatch:
     types: [portfolio_project_deployed]
 permissions:
@@ -23,6 +25,18 @@ jobs:
         env:
           DEPLOYMENT_JSON: ${{ toJSON(github.event.client_payload) }}
         run: python scripts/update_deployment.py
+      - name: Discover opt-in public GitHub + Hugging Face applications
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        env:
+          GH_DISCOVERY_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python scripts/discover_public_apps.py
+      - name: Commit discovered project pages
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add projects
+          git diff --cached --quiet || (git commit -m "Sync public opt-in AI apps" && git push)
       - name: Commit updated link metadata
         if: github.event_name == 'repository_dispatch'
         run: |

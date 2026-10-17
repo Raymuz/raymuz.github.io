@@ -82,3 +82,7 @@ The public pages are summarized from the supplied CV. The raw CV is **not** incl
 ### Public model and competition profiles
 - Hugging Face: https://huggingface.co/raymuz
 - Kaggle: https://www.kaggle.com/raymuz
+
+
+## V6 automatic app discovery
+Read [automatic project integration](guides/AUTO_DEPLOY_INTEGRATION.md). Opt-in template: `templates/portfolio.json`.

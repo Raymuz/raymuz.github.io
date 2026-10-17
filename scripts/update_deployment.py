@@ -9,7 +9,7 @@ from urllib.parse import urlsplit
 ROOT=Path(__file__).resolve().parents[1]
 ALLOWED={
   # Add slug: "github-owner/repository" after the first verified deployment.
-  # Example: "churn-intelligence-lab":"raymuz/churn-intelligence-lab",
+  "churn-intelligence-lab":"raymuz/churn-intelligence-lab",
 }
 
 def valid_https(value,host=None):
@@ -28,6 +28,7 @@ def update(payload):
     owner_repo=ALLOWED[slug]
     if repo!=f'https://github.com/{owner_repo}':raise ValueError('Repository not an approved source')
     if not valid_https(live) or urlsplit(live).hostname not in ('huggingface.co',):raise ValueError('Invalid Hugging Face Space link')
+    if urlsplit(live).path != '/spaces/raymuz/Customer_Churn_Intelligence_Lab' and slug == 'churn-intelligence-lab':raise ValueError('Unexpected Churn Space')
     if '/spaces/' not in urlsplit(live).path:raise ValueError('Invalid Space path')
     if embed and (not valid_https(embed) or not urlsplit(embed).hostname.endswith('.hf.space')):raise ValueError('Invalid embed domain')
     html=page.read_text('utf8')
