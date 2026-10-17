@@ -86,3 +86,12 @@ The public pages are summarized from the supplied CV. The raw CV is **not** incl
 
 ## V6 automatic app discovery
 Read [automatic project integration](guides/AUTO_DEPLOY_INTEGRATION.md). Opt-in template: `templates/portfolio.json`.
+
+
+## V7.2 selected logo and Relevance AI integration
+
+- Selected logo: Option 1, blue-and-navy AM monogram. The header mark is cropped from the approved design and exported as a transparent PNG with no white tile; source page and generated `dist/` contain identical assets.
+- Professional navy/blue/cyan translucent surfaces have been refined without restructuring existing project pages or automation.
+- `#poc` provides a clear Relevance AI proof-of-concept explanation; it does **not** pretend the general relevanceai.com URL points directly to the author's agents. Add verified individual public agent URLs when supplied.
+- All previous automatic discovery files and project HTML pages remain in place.
+- Run the normal publisher with this ZIP; actual live display requires successful GitHub Pages deployment.

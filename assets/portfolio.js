@@ -9,10 +9,22 @@
   function render(){const q=search.value.trim().toLowerCase(),cat=category.value,sd=status.value;const data=projects.filter(p=>(!q||[p.title,p.description,p.category,p.tags.join(' ')].join(' ').toLowerCase().includes(q))&&(!cat||p.category===cat)&&(!sd||(sd==='demo'?Boolean(p.demo_url):!p.demo_url)));
   grid.replaceChildren();counter.textContent=`Showing ${data.length} of ${projects.length} projects`;
   if(!data.length){grid.append(el('div','empty','No projects match these filters.'));return}
-  for(const p of data){const box=el('article','card'),hd=el('div','card-head');hd.append(el('span','tag',p.category),el('span','status',p.status));box.append(hd);
-  const h=el('h3');h.append(link(p.title,p.page_url,false));h.firstChild.className='';box.append(h,el('p','',p.description));
-  const tags=el('div','chips');for(const t of p.tags.slice(0,3))tags.append(el('span','chip',t));box.append(tags);
-  const act=el('div','actions');act.append(link('Project details ↗',p.page_url,true));if(p.demo_url)act.append(link('Use live app ↗',p.demo_url,false));if(p.repo_url)act.append(link('Source ↗',p.repo_url,false));box.append(act);grid.append(box)} }
+  for(const p of data){
+    const details=el('details','project-entry');
+    const summary=el('summary','project-summary');
+    const info=el('span','project-heading');
+    info.append(el('span','project-category',p.category),el('strong','',p.title));
+    const right=el('span','project-right');
+    right.append(el('span','project-status',p.status),el('span','entry-plus','+'));
+    summary.append(info,right);
+    const body=el('div','project-body');body.append(el('p','',p.description));
+    const tags=el('div','chips');for(const t of p.tags.slice(0,5))tags.append(el('span','chip',t));body.append(tags);
+    const act=el('div','actions');act.append(link('Read full case study ↗',p.page_url,true));
+    if(p.demo_url)act.append(link('Launch application ↗',p.demo_url,false));
+    if(p.repo_url)act.append(link('View source ↗',p.repo_url,false));
+    body.append(act);details.append(summary,body);grid.append(details);
+  }
+  }
   fetch('./projects.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Catalogue unavailable');return r.json()}).then(items=>{
     if(!Array.isArray(items))throw Error('Invalid project catalogue');projects=items;
     for(const cat of [...new Set(items.map(x=>x.category))].sort()){const o=document.createElement('option');o.value=cat;o.textContent=cat;category.append(o)}
