@@ -22,7 +22,10 @@ class PortfolioTests(unittest.TestCase):
             self.assertFalse((out/'Musa_Adamou_CV.docx').exists())
             for p in projects:
                 self.assertTrue((out/p['page_url'].lstrip('./')/'index.html').is_file(),p['slug'])
-                self.assertEqual(p['demo_url'],'') # don't invent deployments
+                if p['slug']=='googlesaada':
+                    self.assertEqual(p['demo_url'],'https://huggingface.co/spaces/raymuz/googlesaada')
+                else:
+                    self.assertEqual(p['demo_url'],'') # other deployments not asserted
     def test_no_secrets_or_private_cv(self):
         for file in (ROOT/'index.html',*list((ROOT/'projects').glob('*/index.html'))):
             content=file.read_text()
