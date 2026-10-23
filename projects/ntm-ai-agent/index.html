@@ -32,7 +32,7 @@ main{display:flex;flex:1;min-height:0;padding:12px clamp(8px,1vw,16px) 16px}.age
 <script>
 // Controls whether the public Hugging Face application is embedded.
 window.NTM_AGENT_PUBLIC = true;
-window.NTM_AGENT_EMBED_URL = "https://raymuz-ntm-ai-assistant.hf.space/";
+window.NTM_AGENT_EMBED_URL = "https://raymuz-ntm-ai-assistant.hf.space";
 
 (function(){
  const allowedHost=(host)=>host.endsWith('.hf.space');
@@ -42,6 +42,7 @@ window.NTM_AGENT_EMBED_URL = "https://raymuz-ntm-ai-assistant.hf.space/";
  if(url.protocol!=='https:'||!allowedHost(url.hostname))return;
  const frame=document.getElementById('agent-ui'); frame.src=url.toString();frame.classList.remove('hidden');document.getElementById('configure').classList.add('hidden');
  const direct=document.getElementById('open-host');direct.href=url.toString();direct.classList.remove('hidden');
- document.getElementById('host-status').textContent='NTM Agent connected · loading hosted application';
+ document.getElementById('host-status').textContent='Connecting to NTM Agent';
+ frame.addEventListener('load',()=>{document.getElementById('host-status').textContent='NTM Agent frame loaded';},{once:true});
 })();
 </script></body></html>
