@@ -24,14 +24,14 @@ main{display:flex;flex:1;min-height:0;padding:12px clamp(8px,1vw,16px) 16px}.age
 @media(max-width:650px){header{align-items:flex-start;flex-direction:column}.links{gap:7px}.links a{padding:7px 10px;font-size:12px}.status{flex-direction:column;align-items:flex-start}.agent-frame,.agent-frame iframe,.empty{min-height:calc(100dvh - 210px)}}
 </style></head><body><div class="shell">
 <header><a class="brand" href="../../"><img src="../../assets/adamou-am-logo.png" alt="AM logo"><span>Dr. Adamou Musa / NTM AI Agent</span></a><nav class="links" aria-label="Workspace navigation"><a href="../../">Portfolio</a><a href="https://ntmcm.com/" target="_blank" rel="noopener noreferrer">NTM Website ↗</a><a id="open-host" href="#" class="primary hidden" target="_blank" rel="noopener noreferrer">Open Agent ↗</a></nav></header>
-<div class="status"><div><strong>NTM AI Agent — Interactive Workspace</strong><br><small>Use the embedded agent to access features available in the current deployment.</small></div><small id="host-status" aria-live="polite">Space private · public access pending</small></div>
+<div class="status"><div><strong>NTM AI Agent — Interactive Workspace</strong><br><small>Use the embedded agent to access features available in the current deployment.</small></div><small id="host-status" aria-live="polite">Loading the NTM Agent from Hugging Face</small></div>
 <main><section class="agent-frame" aria-label="NTM interactive agent">
 <iframe id="agent-ui" class="hidden" title="NTM Agent user interface" loading="eager" allow="clipboard-write; microphone" referrerpolicy="strict-origin-when-cross-origin"></iframe>
-<div class="empty" id="configure"><div class="empty-inner"><h1>NTM AI Agent Workspace</h1><p>The interactive workspace is prepared. The NTM Agent is hosted on Hugging Face, but its Space is currently private. Public visitors cannot access or embed a private Space. Once the Space is public and running, this page can display the agent directly here.</p><p><a href="https://huggingface.co/spaces/raymuz/ntm-ai-assistant" target="_blank" rel="noopener noreferrer">NTM Agent hosting page ↗</a></p><p><a href="https://ntmcm.com/" target="_blank" rel="noopener noreferrer">Visit NTM Construction & Management ↗</a></p><div class="message">This is not an independent model deployment. The interface runs on the connected host.</div></div></div>
+<div class="empty" id="configure"><div class="empty-inner"><h1>NTM AI Agent Workspace</h1><p>The NTM Agent is hosted on Hugging Face. If the embedded workspace does not load, open the application using the link below and check that its Space is running and allows embedding.</p><p><a href="https://huggingface.co/spaces/raymuz/ntm-ai-assistant" target="_blank" rel="noopener noreferrer">NTM Agent hosting page ↗</a></p><p><a href="https://ntmcm.com/" target="_blank" rel="noopener noreferrer">Visit NTM Construction & Management ↗</a></p><div class="message">This is not an independent model deployment. The interface runs on the connected host.</div></div></div>
 </section></main></div>
 <script>
-// Set true only after Hugging Face Space is public and tested.
-window.NTM_AGENT_PUBLIC = false;
+// Controls whether the public Hugging Face application is embedded.
+window.NTM_AGENT_PUBLIC = true;
 window.NTM_AGENT_EMBED_URL = "https://raymuz-ntm-ai-assistant.hf.space/";
 
 (function(){
@@ -42,6 +42,6 @@ window.NTM_AGENT_EMBED_URL = "https://raymuz-ntm-ai-assistant.hf.space/";
  if(url.protocol!=='https:'||!allowedHost(url.hostname))return;
  const frame=document.getElementById('agent-ui'); frame.src=url.toString();frame.classList.remove('hidden');document.getElementById('configure').classList.add('hidden');
  const direct=document.getElementById('open-host');direct.href=url.toString();direct.classList.remove('hidden');
- document.getElementById('host-status').textContent='Public Space configured · confirm live application readiness';
+ document.getElementById('host-status').textContent='NTM Agent connected · loading hosted application';
 })();
 </script></body></html>
