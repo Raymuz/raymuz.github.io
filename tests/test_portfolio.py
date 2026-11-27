@@ -24,8 +24,12 @@ class PortfolioTests(unittest.TestCase):
                 self.assertTrue((out/p['page_url'].lstrip('./')/'index.html').is_file(),p['slug'])
                 if p['slug']=='googlesaada':
                     self.assertEqual(p['demo_url'],'https://huggingface.co/spaces/raymuz/googlesaada')
-                else:
-                    self.assertEqual(p['demo_url'],'') # other deployments not asserted
+                elif p['demo_url']:
+                    # Other projects may have live applications.
+                    self.assertTrue(
+                        p['demo_url'].startswith('https://'),
+                        p['slug']
+                    )
     def test_no_secrets_or_private_cv(self):
         for file in (ROOT/'index.html',*list((ROOT/'projects').glob('*/index.html'))):
             content=file.read_text()
